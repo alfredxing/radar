@@ -1,6 +1,6 @@
 Weather Conditions and Radar
 ============================
-## [www.somewhere.com](http://somewhere.com)
+## [www....com](http://somewhere.com)
 
 is a web app that
 * Keeps track current, local climate data sourced from the [National Weather Service](http://www.nws.noaa.gov/tg/radfiles.php)
@@ -27,12 +27,12 @@ Tested with
 Contact `Not-Implemented`
 -------------------------
 * Alfred Xing [@alfredxing](https://github.com/alfredxing)
-* Michelle Findlay-Olynyk
-* Imran Khan
+* Michelle Findlay-Olynyk [@mfindlayolynyk](https://github.com/mfindlayolynyk)
+* Imran Khan [@arclite181](https://github.com/arclite181)
 * Mimi Ko [@mimiko](https://github.com/mimiko)
 
 License
 -------
-ubc, probably
+ubc
 
 
