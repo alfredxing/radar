@@ -1,0 +1,6 @@
+/bin/
+.classpath
+.project
+data.json
+sn.last
+src/Parser.class
