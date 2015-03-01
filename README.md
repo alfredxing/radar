@@ -1,6 +1,5 @@
-Weather Conditions and Radar
-============================
-## [www....com](http://somewhere.com)
+Radar
+=====
 
 is a web app that
 * Keeps track current, local climate data sourced from the [National Weather Service](http://www.nws.noaa.gov/tg/radfiles.php)
@@ -18,8 +17,7 @@ Built with
 ----------
 * Ruby on Rails
 * Amazon RDS
-* Other libraries...
-	
+
 Tested with
 -----------
 * [Travis CI](http://travis-ci.org)
