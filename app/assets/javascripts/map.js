@@ -30,9 +30,9 @@ function RadarOverlay(map) {
 
 RadarOverlay.prototype.onAdd = function() {
     var canvas = document.createElement('canvas');
-    canvas.width = canvas.height = 4096;
+    var map = document.getElementById('map-canvas');
     canvas.style.position = 'absolute';
-    canvas.style.opacity = 0.5;
+    canvas.style.opacity = 0.75;
 
     this.canvas_ = canvas;
 
@@ -46,13 +46,17 @@ RadarOverlay.prototype.draw = function() {
 
     var sw = overlayProjection.fromLatLngToDivPixel(this.bounds_.getSouthWest());
     var ne = overlayProjection.fromLatLngToDivPixel(this.bounds_.getNorthEast());
+    var center = overlayProjection.fromLatLngToDivPixel(this.origin_);
+
+    var pixelRatio = overlayProjection.getWorldWidth() / 40075017;
 
     // Resize and position the canvas to fit the indicated dimensions.
     var canvas = this.canvas_;
-    canvas.style.left = sw.x + 'px';
-    canvas.style.top = ne.y + 'px';
-    canvas.width = (ne.x - sw.x);
-    canvas.height = (sw.y - ne.y);
+    canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
+    canvas.width = ne.x - sw.x;
+    canvas.height = sw.y - ne.y;
+    canvas.style.left = (center.x - (canvas.width / 2)) + "px";
+    canvas.style.top = (center.y - (canvas.height / 2)) + "px";
 
     draw(canvas, data);
 };
@@ -74,38 +78,34 @@ function StationOverlay(map) {
     // Define a property to hold the image's div. We'll
     // actually create this canvas upon receipt of the onAdd()
     // method so we'll leave it null for now.
-    this.canvas_ = null;
+    this.image_ = null;
 
     // Explicitly call setMap on this overlay.
     this.setMap(map);
 }
 
 StationOverlay.prototype.onAdd = function() {
-    var canvas = document.createElement('canvas');
-    canvas.width = canvas.height = 4096;
-    canvas.style.position = 'absolute';
+    var image = document.createElement('img');
+    image.src = '/images/dot.png';
+    image.width = image.height = 20;
+    image.style.position = 'absolute';
 
-    this.canvas_ = canvas;
+    this.image_ = image;
 
     // Add the element to the "overlayLayer" pane.
     var panes = this.getPanes();
-    panes.overlayLayer.appendChild(canvas);
+    panes.overlayLayer.appendChild(image);
 };
 
 StationOverlay.prototype.draw = function() {
     var overlayProjection = this.getProjection();
 
-    var sw = overlayProjection.fromLatLngToDivPixel(this.bounds_.getSouthWest());
-    var ne = overlayProjection.fromLatLngToDivPixel(this.bounds_.getNorthEast());
+    var center = overlayProjection.fromLatLngToDivPixel(this.origin_);
 
-    // Resize and position the canvas to fit the indicated dimensions.
-    var canvas = this.canvas_;
-    canvas.style.left = sw.x + 'px';
-    canvas.style.top = ne.y + 'px';
-    canvas.width = (ne.x - sw.x);
-    canvas.height = (sw.y - ne.y);
-
-    drawImage(canvas);
+    // Position the image
+    var image = this.image_;
+    image.style.left = (center.x - 10) + 'px';
+    image.style.top = (center.y - 10) + 'px';
 };
 
 // Init

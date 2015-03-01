@@ -1,8 +1,4 @@
-function draw(canvas, data) {
-    var ctx = canvas.getContext('2d');
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    var colors = {
+var COLORS = {
         "-30": "#cbffff",
         "-25": "#cb9ace",
         "-20": "#97669a",
@@ -26,7 +22,12 @@ function draw(canvas, data) {
         "70": "#9357c8",
         "75": "#fdfdfd",
         ">75": "#fdfdfd"
-    };
+};
+var RAD = Math.PI / 180;
+
+function draw(canvas, data) {
+    var ctx = canvas.getContext('2d');
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     var floor = Math.floor,
         round = Math.round;
@@ -37,34 +38,37 @@ function draw(canvas, data) {
     var rays = data.rays,
         width = floor((canvas.width / 2) / data.ngates);
 
-    for (var i = 0; i < data.nrays; i++) {
-        var ray = rays[i],
-            gates = ray['gates'];
-
-        var startAngle = radians(ray.azimuth - 90),
-            endAngle = startAngle + radians(1);
+    for (var g = 0; g < data.ngates; g++) {
+        var startRadius = g * width,
+            endRadius = startRadius + width;
 
         for (var v = -30; v <= 75; v+= 5) {
-            ctx.fillStyle = colors[v.toString()];
-            for (var j = 0; j < data.ngates; j++) {
-                var startRadius = j * width,
-                    endRadius = startRadius + width;
+            ctx.fillStyle = COLORS[v.toString()];
+            for (var r = 0; r < data.nrays; r++) {
+                var ray = rays[r],
+                    gate = ray['gates'][g];
 
-                if (gates[j] === "NaN")
+                if (gate === "NaN")
                     continue;
 
-                var value = 5 * round(gates[j] / 5);
+                var startAngle = radians(ray.azimuth - 90),
+                    endAngle = startAngle + RAD;
 
-                if (value != v)
+                var diff = gate - v;
+                if (diff < -2.5 || diff >= 2.5)
                     continue;
 
-                while (gates[j+1] == value) {
-                    endRadius += width;
-                    j++;
+                r++;
+                while (r < data.nrays) {
+                    next = rays[r]['gates'][g];
+                    if (next === "NaN" || next - v < -2.5 || next - v >= 2.5) {
+                        break;
+                    }
+                    endAngle += RAD;
+                    r++;
                 }
 
                 ctx.beginPath();
-                // console.log(centerX, centerY, startRadius, endRadius, startAngle, endAngle);
                 ctx.arc(centerX,centerY,endRadius,startAngle,endAngle, false); // outer (filled)
                 ctx.arc(centerX,centerY,startRadius,endAngle,startAngle, true); // outer (unfills it)
                 ctx.closePath();
@@ -72,8 +76,6 @@ function draw(canvas, data) {
             }
         }
     }
-
-    // ctx.fillRect(0, 0, 100, 100);
 }
 
 function drawImage(canvas) {
