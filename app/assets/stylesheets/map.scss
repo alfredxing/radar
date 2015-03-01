@@ -7,6 +7,16 @@ body {
     color: #222;
 }
 
+a {
+    color: #3a84df;
+    text-decoration: none;
+    outline: 0;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
 #map-canvas {
     position: absolute;
     top: 0;
@@ -49,6 +59,7 @@ body {
     line-height: 1em;
     letter-spacing: -2px;
 }
+
 #temp-units {
     font-weight: 400;
     font-size: 12px;
@@ -68,4 +79,22 @@ body {
     margin-top: 5px;
     margin-left: 2px;
     color: #888;
+}
+
+#weather {
+    margin-bottom: 0;
+}
+
+#info {
+    position: fixed;
+    bottom: 0;
+}
+
+#nav {
+    margin-top: 4px;
+}
+
+#nav a {
+    display: inline-block;
+    margin-right: 12px;
 }
