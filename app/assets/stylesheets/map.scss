@@ -18,16 +18,8 @@ a:hover {
     text-decoration: underline;
 }
 
-#map-canvas {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-
-#card {
-    position: fixed;
+.card {
+    position: relative;
     z-index: 999;
     margin: 15px;
     background: #fff;
@@ -47,6 +39,14 @@ a:hover {
     line-height: 1.333em;
     padding: 16px;
     width: 374px;
+}
+
+#map-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
 }
 
 #icon {
