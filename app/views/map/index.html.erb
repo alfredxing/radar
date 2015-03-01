@@ -8,9 +8,11 @@
 </div>
 
 <div id="nav" class="card">
-    <a id="refresh">Refresh</a>
+    <a id="refresh" href="#">Refresh</a>
     <a href="#">Preferences</a>
-    <a href="#">Log out</a>
+    <a href="users/sign_up">Sign up</a>
+    <a href="users/sign_in">Sign in</a>
+    <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
 </div>
 
 <div id="info" class="card">
