@@ -1,7 +1,11 @@
 //= require map
 
-function refresh() {
-    initialize();
-}
+$(function() {
+    $("#refresh").click(
+	function() {
+            initialize();
+        }
+    );
+});
 
 
