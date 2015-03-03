@@ -32,11 +32,11 @@ function draw(canvas, data) {
     var floor = Math.floor,
         round = Math.round;
 
-    var centerX = floor(canvas.width / 2),
-        centerY = floor(canvas.height / 2);
+    var centerX = canvas.width / 2,
+        centerY = canvas.height / 2;
 
     var rays = data.rays,
-        width = floor((canvas.width / 2) / data.ngates);
+        width = (canvas.width / 2) / data.ngates;
 
     for (var g = 0; g < data.ngates; g++) {
         var startRadius = g * width,
