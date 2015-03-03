@@ -140,7 +140,7 @@ function initialize() {
             data = JSON.parse(this.responseText);
             mapOptions.center = { lat: 49.260605, lng: -123.245994};
             var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-            var radar = new RadarOverlay(map);
+            overlay = new RadarOverlay(map);
             var station = new StationOverlay(map);
         }
     });
