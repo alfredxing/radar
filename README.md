@@ -22,15 +22,9 @@ Tested with
 -----------
 * [Travis CI](http://travis-ci.org)
 
-Contact `Not-Implemented`
+Contact
 -------------------------
 * Alfred Xing [@alfredxing](https://github.com/alfredxing)
 * Michelle Findlay-Olynyk [@mfindlayolynyk](https://github.com/mfindlayolynyk)
 * Imran Khan [@arclite181](https://github.com/arclite181)
 * Mimi Ko [@mimiko](https://github.com/mimiko)
-
-License
--------
-ubc
-
-
