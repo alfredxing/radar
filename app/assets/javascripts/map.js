@@ -34,6 +34,7 @@ RadarOverlay.prototype.onAdd = function() {
     canvas.style.opacity = 0.75;
 
     this.canvas_ = canvas;
+    this.maxedZoom_ = this.getMap().getZoom() == 10;
 
     // Add the element to the "overlayLayer" pane.
     var panes = this.getPanes();
@@ -41,6 +42,9 @@ RadarOverlay.prototype.onAdd = function() {
 };
 
 RadarOverlay.prototype.draw = function() {
+    if (this.getMap().getZoom() == 10 && this.maxedZoom_)
+        return;
+
     var overlayProjection = this.getProjection();
 
     var sw = overlayProjection.fromLatLngToDivPixel(this.bounds_.getSouthWest());
@@ -54,10 +58,13 @@ RadarOverlay.prototype.draw = function() {
     canvas.getContext('2d').clearRect(0, 0, canvas.width, canvas.height);
     canvas.width = ne.x - sw.x;
     canvas.height = sw.y - ne.y;
+
     canvas.style.left = (center.x - (canvas.width / 2)) + "px";
     canvas.style.top = (center.y - (canvas.height / 2)) + "px";
 
     draw(canvas, data);
+
+    this.maxedZoom_ = this.getMap().getZoom() == 10;
 };
 
 // Station overlay
@@ -123,8 +130,8 @@ function initialize() {
         zoomControlOptions: {
             style: google.maps.ZoomControlStyle.SMALL,
             position: google.maps.ControlPosition.RIGHT_BOTTOM
-        }
-        // styles: mapStyles
+        },
+        maxZoom: 10
     };
 
     http.get({
@@ -132,7 +139,6 @@ function initialize() {
         onload: function() {
             data = JSON.parse(this.responseText);
             mapOptions.center = { lat: 49.260605, lng: -123.245994};
-            // mapOptions.center = { lat: data.lat, lng: data.lon };
             var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
             var radar = new RadarOverlay(map);
             var station = new StationOverlay(map);
