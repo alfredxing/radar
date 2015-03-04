@@ -30,7 +30,8 @@ function draw(canvas, data) {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
 
     var floor = Math.floor,
-        round = Math.round;
+        round = Math.round,
+        abs = Math.abs;
 
     var centerX = canvas.width / 2,
         centerY = canvas.height / 2;
@@ -44,36 +45,31 @@ function draw(canvas, data) {
             startAngle = radians(azimuth - 90),
             endAngle = startAngle + RAD;
 
-        for (var v = -30; v <= 75; v+= 5) {
-            ctx.fillStyle = COLORS[v.toString()];
-            for (var g = 0; g < data.ngates; g++) {
-                var gate = gates[g];
+        for (var g = 0; g < data.ngates; g++) {
+            var gate = gates[g];
 
-                if (gate === "NaN")
-                    continue;
+            if (gate === "NaN")
+                continue;
 
-                var startRadius = g * width,
-                    endRadius = startRadius + width;
+            var startRadius = g * width,
+                endRadius = startRadius + width;
 
-                var diff = gate - v;
-                if (diff < -2.5 || diff >= 2.5)
-                    continue;
+            ctx.fillStyle = COLORS[(5*round(gate/5)).toString()];
 
-                while (g + 1 < data.ngates) {
-                    next = gates[g + 1];
-                    if (next === "NaN" || next - v < -2.5 || next - v >= 2.5) {
-                        break;
-                    }
-                    endRadius += width;
-                    g++;
+            while (g + 1 < data.ngates) {
+                next = gates[g + 1];
+                if (next === "NaN" || abs(next - gate) > 2.5) {
+                    break;
                 }
-
-                ctx.beginPath();
-                ctx.arc(centerX,centerY,endRadius,startAngle,endAngle, false); // outer (filled)
-                ctx.arc(centerX,centerY,startRadius,endAngle,startAngle, true); // outer (unfills it)
-                ctx.closePath();
-                ctx.fill();
+                endRadius += width;
+                g++;
             }
+
+            ctx.beginPath();
+            ctx.arc(centerX,centerY,endRadius,startAngle,endAngle, false); // outer (filled)
+            ctx.arc(centerX,centerY,startRadius,endAngle,startAngle, true); // outer (unfills it)
+            ctx.closePath();
+            ctx.fill();
         }
     }
 
