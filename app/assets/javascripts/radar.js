@@ -1,28 +1,4 @@
-var COLORS = {
-        "-30": "#cbffff",
-        "-25": "#cb9ace",
-        "-20": "#97669a",
-        "-15": "#653467",
-        "-10": "#653467",
-        "-5": "#9b9864",
-        "0": "#646464",
-        "5": "#00eae6",
-        "10": "#00a1f5",
-        "15": "#0024f7",
-        "20": "#31fc00",
-        "25": "#23c300",
-        "30": "#178e00",
-        "35": "#fff500",
-        "40": "#e9ba00",
-        "45": "#ff9300",
-        "50": "#ff001a",
-        "55": "#d60014",
-        "60": "#be0010",
-        "65": "#f41eff",
-        "70": "#9357c8",
-        "75": "#fdfdfd",
-        ">75": "#fdfdfd"
-};
+var COLORS = ["#cbffff","#cb9ace","#97669a","#653467","#653467","#9b9864","#646464","#00eae6","#00a1f5","#0024f7","#31fc00","#23c300","#178e00","#fff500","#e9ba00","#ff9300","#ff001a","#d60014","#be0010","#f41eff","#9357c8","#fdfdfd","#fdfdfd"];
 var RAD = Math.PI / 180;
 
 function draw(canvas, data) {
@@ -42,7 +18,7 @@ function draw(canvas, data) {
     for (var r = 0; r < data.nrays; r++) {
         var azimuth = rays[r]['azimuth'],
             gates = rays[r]['gates'],
-            startAngle = radians(azimuth - 90),
+            startAngle = RAD * (azimuth - 90),
             endAngle = startAngle + RAD;
 
         for (var g = 0; g < data.ngates; g++) {
@@ -54,7 +30,7 @@ function draw(canvas, data) {
             var startRadius = g * width,
                 endRadius = startRadius + width;
 
-            ctx.fillStyle = COLORS[(5*round(gate/5)).toString()];
+            ctx.fillStyle = COLORS[round(gate/5) + 6];
 
             while (g + 1 < data.ngates) {
                 next = gates[g + 1];
