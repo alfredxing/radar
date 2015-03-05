@@ -1,7 +1,7 @@
 class AdminController < ApplicationController
-http_basic_authenticate_with name: "supersecretadminname", password: "supersecretadminpassword"
+  http_basic_authenticate_with name: "supersecretadminname", password: "supersecretadminpassword"
   
 
-def panel
+  def panel
   end
 end
