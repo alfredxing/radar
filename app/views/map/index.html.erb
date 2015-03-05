@@ -9,11 +9,28 @@
 
 <div id="nav" class="card">
     <a id="refresh" href="#">Refresh</a>
-    <a href="#">Preferences</a>
+    <% if user_signed_in? %>
+    <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+    <% else %>
     <a href="users/sign_up">Sign up</a>
     <a href="users/sign_in">Sign in</a>
-    <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+    <% end %>
 </div>
+
+<% if user_signed_in? %>
+<div id="preferences" class="card collapsed">
+    <span class="close">&times;</span>
+    <span class="label">Preferences</span>
+    <div class="content">
+        <strong>Display:</strong>
+        <div class="options">
+            <% current_user.preferences.each do |option, value| %>
+            <span data-option="<%= option %>" class="option<%= " selected" if value %>"><%= option.capitalize %></span>
+            <% end %>
+        </div>
+    </div>
+</div>
+<% end %>
 
 <div id="info" class="card">
     <strong>Radar</strong>, a project by <a href="#">Not Implemented</a>.

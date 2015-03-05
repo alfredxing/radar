@@ -21,7 +21,7 @@ a:hover {
 .card {
     position: relative;
     z-index: 999;
-    margin: 15px;
+    margin: 4px 15px;
     background: #fff;
     border-radius: 2px;
     box-shadow: 0 2px 6px rgba(0,0,0,0.3);
@@ -37,8 +37,12 @@ a:hover {
     transition: background-color 200ms cubic-bezier(0.52,0,0.48,1);
     font-size: 12px;
     line-height: 1.333em;
-    padding: 16px;
+    padding: 13px;
     width: 374px;
+}
+
+body > p {
+    display: none;
 }
 
 #map-canvas {
@@ -83,19 +87,86 @@ a:hover {
 }
 
 #weather {
-    margin-bottom: 0;
+    margin-top: 15px;
 }
 
 #info {
     position: fixed;
-    bottom: 0;
-}
-
-#nav {
-    margin-top: 4px;
+    bottom: 11px;
 }
 
 #nav a {
     display: inline-block;
     margin-right: 12px;
+}
+
+#preferences {
+    top: 0;
+    transition: all 0.14s ease-in-out;
+
+    * {
+        transition: all 0.14s ease-in-out;
+    }
+
+    .label {
+        font-size: 14.66px;
+        font-weight: 300;
+        color: #666;
+        display: block;
+    }
+
+    .close {
+        font-size: 20px;
+        font-weight: 200;
+        color: #999;
+        float: right;
+        margin-top: -3px;
+        cursor: pointer;
+    }
+
+    .content {
+        overflow: hidden;
+        max-height: 10em;
+        margin-top: 1em;
+    }
+
+    &.collapsed {
+        padding-bottom: 6px;
+        top: -10px;
+        z-index: 1;
+        cursor: pointer;
+
+        .label {
+            font-size: 12px;
+            font-weight: 400;
+        }
+
+        .close {
+            margin-top: -20px;
+        }
+
+        .content {
+            max-height: 0;
+            margin-top: 0;
+        }
+    }
+
+    .options {
+        float: right;
+        text-align: right;
+
+        .option {
+            margin-left: 5px;
+            cursor: pointer;
+            color: #888;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+
+            &.selected {
+                color: #222;
+            }
+        }
+    }
 }
