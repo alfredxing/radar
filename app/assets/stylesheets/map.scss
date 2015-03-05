@@ -53,37 +53,30 @@ body > p {
     height: 100%;
 }
 
-#icon {
-    float: left;
-    padding-right: 16px;
-}
-
 #temp {
-    font-weight: 200;
-    font-size: 42px;
+    font-weight: 300;
+    font-size: 36px;
     line-height: 1em;
     letter-spacing: -2px;
 }
 
 #temp-units {
     font-weight: 400;
-    font-size: 12px;
+    font-size: 16px;
     vertical-align: top;
     display: inline-block;
     margin-top: 3px;
-    margin-left: 5px;
+    margin-left: 3px;
     color: #888;
 }
 
 #curr-condition {
     display: inline-block;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-weight: 700;
-    line-height: 1em;
-    margin-top: 5px;
-    margin-left: 2px;
-    color: #888;
+    font-size: 15.88px;
+    font-weight: 400;
+    vertical-align: top;
+    margin-top: 2px;
+    margin-left: 24px;
 }
 
 #weather {
