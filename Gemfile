@@ -38,6 +38,10 @@ gem 'passenger'
 # Devise creates user profiles with authentication and other goodies. 
 gem 'devise'
 
+# Windows gem tweaks
+gem 'coffee-script-source', platforms: [:mingw, :mswin]
+gem 'tzinfo-data', platforms: [:mingw, :mswin]
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
