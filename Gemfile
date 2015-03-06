@@ -39,7 +39,7 @@ gem 'passenger'
 gem 'devise'
 
 # Windows gem tweaks
-gem 'coffee-script-source', platforms: [:mingw, :mswin]
+gem 'coffee-script-source', '1.8.0', platforms: [:mingw, :mswin]
 gem 'tzinfo-data', platforms: [:mingw, :mswin]
 
 # Use Capistrano for deployment
