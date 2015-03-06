@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
   get 'admin/panel'
+  get 'weather/update'
 
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
