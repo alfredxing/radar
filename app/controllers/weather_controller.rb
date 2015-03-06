@@ -12,9 +12,8 @@ class WeatherController < ApplicationController
     @temperature = doc.xpath("//currentConditions//temperature/text()").text.to_f
     @icon_code = doc.xpath("//currentConditions//iconCode/text()").text.to_i
     s = doc.xpath("//currentConditions//wind//speed//text()").text.to_f
-   di = doc.xpath("//currentConditions//wind//direction/text()").text
-    p = " #{s}  KMH "
-    @wind = p.concat(di)
+    di = doc.xpath("//currentConditions//wind//direction/text()").text
+    @wind = "#{s} km/h #{di}"
     @dewpoint = doc.xpath("//currentConditions//dewpoint/text()").text.to_f
     @pressure = doc.xpath("//currentConditions//pressure/text()").text.to_f
     @visibility = doc.xpath("//currentConditions//visibility/text()").text.to_f
@@ -29,8 +28,8 @@ class WeatherController < ApplicationController
         "condition" => @condition,
         "temperature" => @temperature,
         "icon_code" => @icon_code,
-       "wind" => @wind, # "12 km/h WSW"
-       "dewpoint" => @dewpoint,
+        "wind" => @wind, # "12 km/h WSW"
+        "dewpoint" => @dewpoint,
         "pressure" => @pressure,
         "visibility" => @visibility,
         "humidity" => @humidity
