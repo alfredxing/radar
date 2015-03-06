@@ -79,6 +79,24 @@ body > p {
     margin-left: 24px;
 }
 
+#detailed-conditions {
+    float: right;
+    margin-right: 1px;
+    color: #666;
+
+    .item {
+        display: block;
+
+        .label {
+            font-weight: 500;
+            display: inline-block;
+            width: 64px;
+            color: #999;
+            text-align: left;
+        }
+    }
+}
+
 #weather {
     margin-top: 15px;
 }
@@ -95,10 +113,10 @@ body > p {
 
 #preferences {
     top: 0;
-    transition: all 0.14s ease-in-out;
+    transition: all 0.1s ease-in-out;
 
     * {
-        transition: all 0.14s ease-in-out;
+        transition: all 0.1s ease-in-out;
     }
 
     .label {
