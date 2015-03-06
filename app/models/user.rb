@@ -5,4 +5,17 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   validates :email, :presence => true, :uniqueness => true
+
+  serialize :preferences
+  after_initialize :set_preferences_defaults
+  private
+    def set_preferences_defaults
+      self.preferences ||= {
+        "wind" => false,
+        "dewpoint" => false,
+        "pressure" => false,
+        "visibility" => false,
+        "humidity" => false
+      }
+    end
 end
