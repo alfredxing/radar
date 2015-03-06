@@ -11,14 +11,16 @@ class WeatherController < ApplicationController
     @condition = doc.xpath("//currentConditions//condition/text()").text
     @temperature = doc.xpath("//currentConditions//temperature/text()").text.to_f
     @icon_code = doc.xpath("//currentConditions//iconCode/text()").text.to_i
+
     s = doc.xpath("//currentConditions//wind//speed//text()").text.to_f
     di = doc.xpath("//currentConditions//wind//direction/text()").text
     @wind = "#{s} km/h #{di}"
+
     @dewpoint = doc.xpath("//currentConditions//dewpoint/text()").text.to_f
     @pressure = doc.xpath("//currentConditions//pressure/text()").text.to_f
     @visibility = doc.xpath("//currentConditions//visibility/text()").text.to_f
     @humidity = doc.xpath("//currentConditions//relativeHumidity/text()").text.to_f
-
+    @updated = DateTime.parse(doc.xpath("//currentConditions//dateTime[@zone='PST']//timeStamp/text()").text)
 
     entry = Weather.first || Weather.new
 
@@ -32,7 +34,8 @@ class WeatherController < ApplicationController
         "dewpoint" => @dewpoint,
         "pressure" => @pressure,
         "visibility" => @visibility,
-        "humidity" => @humidity
+        "humidity" => @humidity,
+        "updated" => @updated
     }
 
     entry.save
