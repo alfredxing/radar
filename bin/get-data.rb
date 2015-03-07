@@ -1,4 +1,4 @@
-#!/usr/bin/env bundle exec rails runner
+# Run with `bundle exec rails runner bin/get-data.rb`
 require 'net/http'
 require 'open-uri'
 
@@ -32,5 +32,3 @@ File.write(radar_json_file, radar_json)
 # Download weather XML
 file = open(WEATHER_DOWNLOAD_PATH)
 puts Weather.import(file).inspect
-
-# TODO: Pass the XML data to the weather data loader (#47)
