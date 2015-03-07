@@ -1,7 +1,10 @@
-#!/usr/bin/env ruby
+#!/usr/bin/env bundle exec rails runner
 require 'net/http'
+require 'open-uri'
 
 BASE_DIR = File.expand_path("../", File.dirname(__FILE__))
+WEATHER_DOWNLOAD_PATH = "http://dd.weatheroffice.ec.gc.ca/citypage_weather/xml/BC/s0000141_e.xml"
+RADAR_DOWNLOAD_PATH = "ftp://tgftp.nws.noaa.gov/SL.us008001/DF.of/DC.radar/DS.p19r0/SI.katx/sn.last"
 
 def in_base_dir(relative_path)
   return File.join(BASE_DIR, relative_path)
@@ -9,8 +12,7 @@ end
 
 # Download raw radar files
 radar_data_file = in_base_dir("public/data/radar.nws")
-radar_download_path = "ftp://tgftp.nws.noaa.gov/SL.us008001/DF.of/DC.radar/DS.p19r0/SI.katx/sn.last"
-`curl #{radar_download_path} --create-dirs -o #{radar_data_file}`
+`curl #{RADAR_DOWNLOAD_PATH} --create-dirs -o #{radar_data_file}`
 
 # Compile parser
 build_path = in_base_dir("bin/radar-parser")
@@ -28,8 +30,7 @@ radar_json_file = in_base_dir("/public/data/radar.json")
 File.write(radar_json_file, radar_json)
 
 # Download weather XML
-weather_xml_file = in_base_dir("/public/data/weather.xml")
-weather_download_path = "http://dd.weatheroffice.ec.gc.ca/citypage_weather/xml/BC/s0000141_e.xml"
-`curl #{weather_download_path} --create-dirs -o #{weather_xml_file}`
+file = open(WEATHER_DOWNLOAD_PATH)
+puts Weather.import(file).inspect
 
 # TODO: Pass the XML data to the weather data loader (#47)
