@@ -1,6 +1,6 @@
 class MapController < ApplicationController
   def index
-    curr = ActiveSupport::JSON.decode(Weather.first.current.to_json)
+    curr = Weather.first.current
     @updated = curr["updated"]
     @temperature = curr["temperature"]
     @condition = curr["condition"]
