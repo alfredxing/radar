@@ -32,7 +32,7 @@ class AdminController < ApplicationController
 
   def update_weather
     file = open("http://dd.weatheroffice.ec.gc.ca/citypage_weather/xml/BC/s0000141_e.xml")
-    entry = Weather.import(file)
+    entry = WeatherHelper.import(file)
 
     render json: true
   end
