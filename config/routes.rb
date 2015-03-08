@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   devise_for :users
 
   # User preferences
+  get 'user/preferences'
   patch 'user/preferences' => 'user#update_preferences'
 
   # Set root to map
