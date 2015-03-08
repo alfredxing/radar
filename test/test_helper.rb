@@ -7,4 +7,7 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+  def in_base_dir(relative_path)
+    return Rails.root.join(relative_path)
+  end
 end
