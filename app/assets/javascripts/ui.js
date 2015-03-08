@@ -6,6 +6,7 @@ function updateOptions() {
         options[$(this).attr("data-option")] = $(this).hasClass("selected");
     });
     console.log(options);
+    updateDisplay(options);
 
     $.ajax({
         url: '/user/preferences',
@@ -13,6 +14,15 @@ function updateOptions() {
         type: 'PATCH',
         contentType: 'application/json'
     });
+}
+
+function updateDisplay(options) {
+    var keys = Object.keys(options);
+    for (var i = 0; i < keys.length; i++) {
+        var key = keys[i],
+            el = $("[data-tag=" + key + "]").parent();
+        options[key] ? el.show() : el.hide();
+    }
 }
 
 $(window).load(function() {

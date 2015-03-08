@@ -8,14 +8,17 @@ class User < ActiveRecord::Base
 
   serialize :preferences
   after_initialize :set_preferences_defaults
+
+  DEFAULT_PREFS = {
+    "wind" => true,
+    "dewpoint" => false,
+    "pressure" => true,
+    "visibility" => false,
+    "humidity" => true
+  }
+
   private
     def set_preferences_defaults
-      self.preferences ||= {
-        "wind" => false,
-        "dewpoint" => false,
-        "pressure" => false,
-        "visibility" => false,
-        "humidity" => false
-      }
+      self.preferences ||= DEFAULT_PREFS
     end
 end
