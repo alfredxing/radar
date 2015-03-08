@@ -4,23 +4,23 @@
     <div id="detailed-conditions">
         <span class="item">
             <span class="label">Wind:</span>
-            <strong><%= @wind %></strong>
+            <strong data-tag="wind"><%= @wind %></strong>
         </span>
         <span class="item">
             <span class="label">Dewpoint:</span>
-            <strong><%= @dewpoint %></strong>&deg;C
+            <strong data-tag="dewpoint"><%= @dewpoint %></strong>&deg;C
         </span>
         <span class="item">
             <span class="label">Pressure:</span>
-            <strong><%= @pressure %></strong> kPa
+            <strong data-tag="pressure"><%= @pressure %></strong> kPa
         </span>
         <span class="item">
             <span class="label">Visibility:</span>
-            <strong><%= @visibility %></strong> km
+            <strong data-tag="visibility"><%= @visibility %></strong> km
         </span>
         <span class="item">
             <span class="label">Humidity:</span>
-            <strong><%= @humidity %></strong>%
+            <strong data-tag="humidity"><%= @humidity %></strong>%
         </span>
     </div>
 </div>
@@ -54,13 +54,11 @@
 <% end %>
 
 <div id="bottom-container">
+    <div id="last-updated" class="card">
+        Last updated: <span data-tag="updated"><%= @updated %></span><br>
+    </div> 
 
-<div id="last-updated" class="card">
-    Last updated: <%= @updated %><br>
-</div> 
-
-<div id="info" class="card">
-    <strong>Radar</strong>, a project by <a href="#">Not Implemented</a>.
-</div>
-
+    <div id="info" class="card">
+        <strong>Radar</strong>, a project by <a href="#">Not Implemented</a>.
+    </div>
 </div>

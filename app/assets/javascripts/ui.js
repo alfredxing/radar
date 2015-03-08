@@ -1,3 +1,5 @@
+var DETAILED_WEATHER = ["wind", "dewpoint", "pressure", "visiblity", "humidity"];
+
 function updateOptions() {
     var options = {};
     $(".option").each(function() {
@@ -15,7 +17,25 @@ function updateOptions() {
 
 $(window).load(function() {
     $("#refresh").click(function() {
-        initialize();
+        // Refresh radar
+        $.get("/data/radar.json", function(data) {
+            window.data = JSON.parse(data);
+            overlay.draw();
+        });
+
+        // Refresh weather
+        $.get("/weather", function(data) {
+            $("#temp").text(data.current.temperature);
+            $("#condition").text(data.current.condition);
+            $("[data-tag=updated]").text((new Date(data.current.updated)).toLocaleString());
+
+            for (var i = 0; i < DETAILED_WEATHER.length; i++) {
+                var tag = DETAILED_WEATHER[i];
+                $("[data-tag=" + tag + "]").text(data.current[tag]);
+            }
+        });
+
+        return false;
     });
 
     $("body").on('click', '#preferences.collapsed', function() {
@@ -29,5 +49,10 @@ $(window).load(function() {
     $(".option").click(function() {
         $(this).toggleClass("selected");
         updateOptions();
+    });
+
+    // Convert last updated string to human readable date
+    $("[data-tag=updated]").text(function() {
+        return (new Date($(this).text())).toLocaleString()
     });
 });
