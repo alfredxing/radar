@@ -1,3 +1,5 @@
+require 'open-uri'
+
 class AdminController < ApplicationController
   http_basic_authenticate_with name: "supersecretadminname", password: "supersecretadminpassword"
 
@@ -24,6 +26,13 @@ class AdminController < ApplicationController
     radar_json = `java -cp #{class_path} Parser #{radar_data_file}`
     radar_json_file = in_base_dir("/public/data/radar.json")
     File.write(radar_json_file, radar_json)
+
+    render json: true
+  end
+
+  def update_weather
+    file = open("http://dd.weatheroffice.ec.gc.ca/citypage_weather/xml/BC/s0000141_e.xml")
+    entry = Weather.import(file)
 
     render json: true
   end
