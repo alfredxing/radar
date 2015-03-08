@@ -19,7 +19,7 @@ class Weather < ActiveRecord::Base
     @pressure = doc.xpath("//currentConditions//pressure/text()").text.to_f
     @visibility = doc.xpath("//currentConditions//visibility/text()").text.to_f
     @humidity = doc.xpath("//currentConditions//relativeHumidity/text()").text.to_f
-    @updated = DateTime.parse(doc.xpath("//currentConditions//dateTime[@zone='UTC']//timeStamp/text()").text)
+    @updated = DateTime.parse(doc.xpath("//dateTime[@zone='UTC']//timeStamp/text()").first.text)
 
     entry = Weather.first || Weather.new
 
