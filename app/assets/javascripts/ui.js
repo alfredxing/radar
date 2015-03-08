@@ -25,13 +25,13 @@ $(window).load(function() {
 
         // Refresh weather
         $.getJSON("/weather", function(res) {
-            $("#temp").text(data.current.temperature);
-            $("#condition").text(data.current.condition);
-            $("[data-tag=updated]").text((new Date(data.current.updated)).toLocaleString());
+            $("#temp").text(res.current.temperature);
+            $("#condition").text(res.current.condition);
+            $("[data-tag=updated]").text((new Date(res.current.updated)).toLocaleString());
 
             for (var i = 0; i < DETAILED_WEATHER.length; i++) {
                 var tag = DETAILED_WEATHER[i];
-                $("[data-tag=" + tag + "]").text(data.current[tag]);
+                $("[data-tag=" + tag + "]").text(res.current[tag]);
             }
         });
 
