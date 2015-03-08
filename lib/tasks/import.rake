@@ -32,6 +32,6 @@ namespace :data do
 
     # Download weather XML
     file = open(WEATHER_DOWNLOAD_PATH)
-    puts Weather.import(file).inspect
+    puts WeatherHelper.import(file).inspect
   end
 end
