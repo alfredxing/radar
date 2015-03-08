@@ -18,13 +18,13 @@ function updateOptions() {
 $(window).load(function() {
     $("#refresh").click(function() {
         // Refresh radar
-        $.get("/data/radar.json", function(data) {
-            window.data = JSON.parse(data);
+        $.getJSON("/data/radar.json", function(res) {
+            window.data = res;
             overlay.draw();
         });
 
         // Refresh weather
-        $.get("/weather", function(data) {
+        $.getJSON("/weather", function(res) {
             $("#temp").text(data.current.temperature);
             $("#condition").text(data.current.condition);
             $("[data-tag=updated]").text((new Date(data.current.updated)).toLocaleString());

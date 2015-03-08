@@ -135,8 +135,8 @@ function initialize() {
         maxZoom: 10
     };
 
-    $.get("/data/radar.json", function(res) {
-        data = JSON.parse(res);
+    $.getJSON("/data/radar.json", function(res) {
+        data = res;
         mapOptions.center = { lat: 49.260605, lng: -123.245994};
         var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
         overlay = new RadarOverlay(map);
