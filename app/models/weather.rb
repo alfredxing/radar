@@ -21,6 +21,7 @@ class Weather < ActiveRecord::Base
     @humidity = doc.xpath("//currentConditions//relativeHumidity/text()").text.to_f
     @updated = DateTime.parse(doc.xpath("//dateTime[@zone='UTC']//timeStamp/text()").first.text)
 
+
     entry = Weather.first || Weather.new
 
     entry.code = @station_code
