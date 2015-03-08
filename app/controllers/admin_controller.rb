@@ -1,3 +1,5 @@
+require 'open-uri'
+
 class AdminController < ApplicationController
   http_basic_authenticate_with name: "supersecretadminname", password: "supersecretadminpassword"
 
@@ -32,7 +34,7 @@ class AdminController < ApplicationController
     file = open("http://dd.weatheroffice.ec.gc.ca/citypage_weather/xml/BC/s0000141_e.xml")
     entry = Weather.import(file)
 
-    render body: true
+    render json: true
   end
 
   private
