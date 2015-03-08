@@ -1,5 +1,3 @@
-//= require map
-
 function updateOptions() {
     var options = {};
     $(".option").each(function() {
@@ -15,7 +13,7 @@ function updateOptions() {
     });
 }
 
-$(function() {
+$(window).load(function() {
     $("#refresh").click(function() {
         initialize();
     });

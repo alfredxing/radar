@@ -1,5 +1,6 @@
 //= require http
 //= require radar
+//= require ui
 
 // Globals
 var overlay, data;
