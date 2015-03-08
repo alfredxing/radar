@@ -28,6 +28,13 @@ class AdminController < ApplicationController
     render json: true
   end
 
+  def update_weather
+    file = open("http://dd.weatheroffice.ec.gc.ca/citypage_weather/xml/BC/s0000141_e.xml")
+    entry = Weather.import(file)
+
+    render body: true
+  end
+
   private
     def in_base_dir(relative_path)
       return File.join(File.expand_path("../../", File.dirname(__FILE__)), relative_path)
