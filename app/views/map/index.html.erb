@@ -1,26 +1,26 @@
 <div id="weather" class="card">
-    <span id="temp">6.6</span><span id="temp-units">&deg;C</span>
-    <span id="curr-condition">Partly Cloudy</span>
+    <span id="temp"><%= @temperature %></span><span id="temp-units">&deg;C</span>
+    <span id="curr-condition"><%= @condition %>&nbsp;</span>
     <div id="detailed-conditions">
         <span class="item">
             <span class="label">Wind:</span>
-            <strong>4 km/h</strong> NW
+            <strong data-tag="wind"><%= @wind %></strong>
         </span>
         <span class="item">
             <span class="label">Dewpoint:</span>
-            <strong>0.7</strong>&deg;C
+            <strong data-tag="dewpoint"><%= @dewpoint %></strong>&deg;C
         </span>
         <span class="item">
             <span class="label">Pressure:</span>
-            <strong>103.0</strong> kPa
+            <strong data-tag="pressure"><%= @pressure %></strong> kPa
         </span>
         <span class="item">
             <span class="label">Visibility:</span>
-            <strong>48.3</strong> km
+            <strong data-tag="visibility"><%= @visibility %></strong> km
         </span>
         <span class="item">
             <span class="label">Humidity:</span>
-            <strong>75</strong>%
+            <strong data-tag="humidity"><%= @humidity %></strong>%
         </span>
     </div>
 </div>
@@ -53,6 +53,12 @@
 </div>
 <% end %>
 
-<div id="info" class="card">
-    <strong>Radar</strong>, a project by <a href="#">Not Implemented</a>.
+<div id="bottom-container">
+    <div id="last-updated" class="card">
+        Last updated: <span data-tag="updated"><%= @updated %></span><br>
+    </div> 
+
+    <div id="info" class="card">
+        <strong>Radar</strong>, a project by <a href="#">Not Implemented</a>.
+    </div>
 </div>

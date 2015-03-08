@@ -5,6 +5,7 @@ Rails.application.routes.draw do
 
   # Weather
   get 'weather/update'
+  get 'weather' => 'weather#get'
 
   # Devise
   devise_for :users

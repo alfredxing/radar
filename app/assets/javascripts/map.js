@@ -135,15 +135,12 @@ function initialize() {
         maxZoom: 10
     };
 
-    http.get({
-        url: "/data/radar.json",
-        onload: function() {
-            data = JSON.parse(this.responseText);
-            mapOptions.center = { lat: 49.260605, lng: -123.245994};
-            var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
-            overlay = new RadarOverlay(map);
-            var station = new StationOverlay(map);
-        }
+    $.getJSON("/data/radar.json", function(res) {
+        data = res;
+        mapOptions.center = { lat: 49.260605, lng: -123.245994};
+        var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+        overlay = new RadarOverlay(map);
+        var station = new StationOverlay(map);
     });
 }
 google.maps.event.addDomListener(window, 'load', initialize);
