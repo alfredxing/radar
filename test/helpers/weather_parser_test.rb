@@ -31,7 +31,7 @@ class WeatherParserTest < ActionController::TestCase
         "pressure" => 102.5,
         "visibility" => 48.3,
         "humidity" => 90,
-        "updated" => DateTime.parse("20150307180000")
+        "updated" => DateTime.parse("20150308020300")
     }
     assert_equal expected, @@entry.current
   end
