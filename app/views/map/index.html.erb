@@ -30,7 +30,10 @@
 
 <div id="nav" class="card">
     <a id="refresh" href="#">Refresh</a>
-    <% if user_signed_in? %>
+   <span style="float:right"> <a href="https://twitter.com/share" class="twitter-share-button">Tweet</a>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script></span><br/>
+
+  <% if user_signed_in? %>
     <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
     <% else %>
     <a href="users/sign_up">Sign up</a>
@@ -48,6 +51,8 @@
             <% current_user.preferences.each do |option, value| %>
             <span data-option="<%= option %>" class="option<%= " selected" if value %>"><%= option.capitalize %></span>
             <% end %>
+
+
         </div>
     </div>
 </div>
