@@ -3,7 +3,7 @@
 <head>
   <title><%= @title.nil? ? "Not Implemented" : @title %></title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?libraries=geometry"></script>
+  <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?libraries=geometry,places"></script>
   <%= javascript_include_tag 'application', controller_name %>
   <%= csrf_meta_tags %>
 </head>

@@ -3,7 +3,7 @@
 //= require ui
 
 // Globals
-var overlay, data;
+var map, overlay, data, autocomplete, marker;
 
 // Radar overlay
 RadarOverlay.prototype = new google.maps.OverlayView();
@@ -138,9 +138,31 @@ function initialize() {
     $.getJSON("/data/radar.json", function(res) {
         data = res;
         mapOptions.center = { lat: 49.260605, lng: -123.245994};
-        var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+        map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
         overlay = new RadarOverlay(map);
         var station = new StationOverlay(map);
+
+        // Autocomplete
+        var input = document.getElementById('search');
+        autocomplete = new google.maps.places.Autocomplete(input, {});
+        autocomplete.bindTo('bounds', map);
+        google.maps.event.addListener(autocomplete, 'place_changed', onPlaceChanged);
     });
 }
+
+function onPlaceChanged() {
+    var place = autocomplete.getPlace();
+    if (place.geometry) {
+        map.panTo(place.geometry.location);
+
+        if (marker)
+            marker.setMap(null);
+        marker = new google.maps.Marker({
+            position: place.geometry.location,
+            animation: google.maps.Animation.DROP
+        });
+        marker.setMap(map);
+    }
+}
+
 google.maps.event.addDomListener(window, 'load', initialize);

@@ -97,10 +97,6 @@ body > p {
     }
 }
 
-#weather {
-    margin-top: 15px;
-}
-
 #bottom-container {
     position: fixed;
     bottom: 11px;
@@ -188,4 +184,34 @@ body > p {
             }
         }
     }
+}
+
+#search {
+    position: relative;
+    z-index: 1000;
+    border: none;
+    margin: 15px 15px 0 15px;
+    background: #fff;
+    border: 1px solid transparent;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    outline: none;
+    font-size: 12px;
+    line-height: 1.333em;
+    padding: 10px 13px;
+    width: 374px;
+
+    &:focus {
+        border: 1px solid lighten(#3a84df, 10%);
+    }
+}
+
+.pac-container {
+    border: none;
+    border-left: 1px solid transparent;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    z-index: 1000;
 }
