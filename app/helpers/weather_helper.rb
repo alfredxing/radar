@@ -1,8 +1,8 @@
 module WeatherHelper
-  def self.import(file)
+  def self.import(station, file)
     doc = Nokogiri::XML(file)
 
-    @station_code = doc.xpath("//currentConditions//station").attr("code").text
+    @station_code = doc.xpath("//location//name").attr("code").text
     @station_name = doc.xpath("//currentConditions//station").text
 
     @condition = doc.xpath("//currentConditions//condition/text()").text
@@ -19,7 +19,7 @@ module WeatherHelper
     @humidity = doc.xpath("//currentConditions//relativeHumidity/text()").text.to_f
     @updated = DateTime.parse(doc.xpath("//dateTime[@zone='UTC']//timeStamp/text()").first.text)
 
-    entry = Weather.first || Weather.new
+    entry = (Weather.find_by code: station) || Weather.new
 
     entry.code = @station_code
     entry.name = @station_name
