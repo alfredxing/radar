@@ -188,11 +188,9 @@ body > p {
 }
 
 #forecast {
-    tr {
-        padding-bottom: 10px;
-    }
     td {
         vertical-align: top;
+        padding: 0 0 5px 0;
     }
     .name {
         width: 100px;
