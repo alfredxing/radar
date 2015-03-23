@@ -7,6 +7,8 @@ function updateOptions() {
     });
     console.log(options);
     updateDisplay(options);
+    
+    options["code"] = $("#city_select").val();
 
     $.ajax({
         url: '/user/preferences',
@@ -60,6 +62,8 @@ $(window).load(function() {
         $(this).toggleClass("selected");
         updateOptions();
     });
+    
+    $("#city_select").click{updateOptions};
 
     // Convert last updated string to human readable date
     $("[data-tag=updated]").text(function() {
