@@ -32,6 +32,21 @@
     </div>
 </div>
 
+<div id="forecast" class="card collapsable collapsed">
+    <span class="close">&times;</span>
+    <span class="label">Forecast</span>
+    <div class="content">
+        <table>
+        <% @forecast.each do |f| %>
+            <tr>
+                <td class="name"><%= f[:name] %></td>
+                <td class="forecast"><%= f[:forecast] %></td>
+            </tr>
+        <% end %>
+        </table>
+    </div>
+</div>
+
 <div id="map-canvas">
 </div>
 
@@ -46,7 +61,7 @@
 </div>
 
 <% if user_signed_in? %>
-<div id="preferences" class="card collapsed">
+<div id="preferences" class="card collapsable collapsed">
     <span class="close">&times;</span>
     <span class="label">Preferences</span>
     <div class="content">

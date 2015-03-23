@@ -35,6 +35,13 @@ module WeatherHelper
     @lat = doc.xpath("//currentConditions//station").attr("lat").text.to_f
     @lon = -1 * doc.xpath("//currentConditions//station").attr("lon").text.to_f
 
+    @forecast = doc.xpath("//forecastGroup/forecast").map { |e|
+      {
+        "name": e.xpath(".//period").attr("textForecastName").text,
+        "forecast": e.xpath(".//textSummary/text()").first.text
+      }
+    }
+
     entry = (Weather.find_by code: station) || Weather.new
 
     entry.code = @station_code
@@ -54,6 +61,7 @@ module WeatherHelper
       "lat" => @lat,
       "lon" => @lon
     }
+    entry.forecast = @forecast
 
     entry.save
     return entry

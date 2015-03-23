@@ -5,6 +5,7 @@ function updateOptions() {
     $(".option").each(function() {
         options[$(this).attr("data-option")] = $(this).hasClass("selected");
     });
+
     console.log(options);
     updateDisplay(options);
     
@@ -50,11 +51,11 @@ $(window).load(function() {
         return false;
     });
 
-    $("body").on('click', '#preferences.collapsed', function() {
+    $("body").on('click', '.collapsable.collapsed', function() {
         $(this).toggleClass("collapsed");
     });
-    $("#preferences .close").click(function(e) {
-        $("#preferences").toggleClass("collapsed");
+    $(".collapsable .close").click(function(e) {
+        $(this).parent().toggleClass("collapsed");
         e.stopPropagation();
     });
 
