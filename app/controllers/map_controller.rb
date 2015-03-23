@@ -7,7 +7,7 @@ class MapController < ApplicationController
     @wind = curr["wind"]
     @dewpoint = curr["dewpoint"]
     @pressure = curr["pressure"]
-    @visibility = curr["visibility"] 
+    @visibility = curr["visibility"]
     @humidity = curr["humidity"]
 
     @prefs = user_signed_in? ? current_user.preferences : User::DEFAULT_PREFS
