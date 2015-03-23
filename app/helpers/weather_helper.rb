@@ -19,6 +19,10 @@ module WeatherHelper
     @humidity = doc.xpath("//currentConditions//relativeHumidity/text()").text.to_f
     @updated = DateTime.parse(doc.xpath("//dateTime[@zone='UTC']//timeStamp/text()").first.text)
 
+    # Assumptions: latitude is always positive and longitude is always negative
+    @lat = doc.xpath("//currentConditions//station").attr("lat").text.to_f
+    @lon = -1 * doc.xpath("//currentConditions//station").attr("lon").text.to_f
+    
     entry = (Weather.find_by code: station) || Weather.new
 
     entry.code = @station_code
@@ -33,6 +37,10 @@ module WeatherHelper
         "visibility" => @visibility,
         "humidity" => @humidity,
         "updated" => @updated
+    }
+    entry.location = {
+        "lat" => @lat,
+        "lon" => @lon
     }
 
     entry.save
