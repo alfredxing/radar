@@ -53,15 +53,16 @@
             <% current_user.preferences.each do |option, value| %>
             <span data-option="<%= option %>" class="option<%= " selected" if value %>"><%= option.capitalize %></span>
             <% end %>
-        	<select>
-        		<option>Vancouver</option>
-        		<option>Abbotsford</option>
-        		<option>Agassiz</option>
-        		<option>Nanaimo</option>
-        		<option>Squamish</option>
-        		<option>Victoria</option>
-        		<option>Whistler</option>
-        		<option>White Rock</option>
+            
+        	<select id="city_select">
+        		<option id="s0000141">Vancouver</option>
+        		<option id="s0000758">Abbotsford</option>
+        		<option id="s0000398">Agassiz</option>
+        		<option id="s0000496">Nanaimo</option>
+        		<option id="s0000496">Squamish</option>
+        		<option id="s0000775">Victoria</option>
+        		<option id="s0000078">Whistler</option>
+        		<option id="s0000373">White Rock</option>
         	</select>
         </div>
     </div>
