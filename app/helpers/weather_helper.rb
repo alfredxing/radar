@@ -1,4 +1,16 @@
 module WeatherHelper
+  WEATHER_BASE_PATH = "http://dd.weatheroffice.ec.gc.ca/citypage_weather/xml/BC/"
+  WEATHER_STATIONS = [
+    "s0000078",
+    "s0000323",
+    "s0000775",
+    "s0000373",
+    "s0000496",
+    "s0000758",
+    "s0000398",
+    "s0000141"
+  ]
+
   def self.import(station, file)
     doc = Nokogiri::XML(file)
 
@@ -22,25 +34,25 @@ module WeatherHelper
     # Assumptions: latitude is always positive and longitude is always negative
     @lat = doc.xpath("//currentConditions//station").attr("lat").text.to_f
     @lon = -1 * doc.xpath("//currentConditions//station").attr("lon").text.to_f
-    
+
     entry = (Weather.find_by code: station) || Weather.new
 
     entry.code = @station_code
     entry.name = @station_name
     entry.current = {
-        "condition" => @condition,
-        "temperature" => @temperature,
-        "icon_code" => @icon_code,
-        "wind" => @wind, # "12 km/h WSW"
-        "dewpoint" => @dewpoint,
-        "pressure" => @pressure,
-        "visibility" => @visibility,
-        "humidity" => @humidity,
-        "updated" => @updated
+      "condition" => @condition,
+      "temperature" => @temperature,
+      "icon_code" => @icon_code,
+      "wind" => @wind, # "12 km/h WSW"
+      "dewpoint" => @dewpoint,
+      "pressure" => @pressure,
+      "visibility" => @visibility,
+      "humidity" => @humidity,
+      "updated" => @updated
     }
     entry.location = {
-        "lat" => @lat,
-        "lon" => @lon
+      "lat" => @lat,
+      "lon" => @lon
     }
 
     entry.save

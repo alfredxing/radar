@@ -2,17 +2,6 @@ require 'net/http'
 require 'open-uri'
 
 BASE_DIR = File.expand_path("../../", File.dirname(__FILE__))
-WEATHER_BASE_PATH = "http://dd.weatheroffice.ec.gc.ca/citypage_weather/xml/BC/"
-WEATHER_STATIONS = [
-  "s0000078",
-  "s0000323",
-  "s0000775",
-  "s0000373",
-  "s0000496",
-  "s0000758",
-  "s0000398",
-  "s0000141"
-]
 RADAR_DOWNLOAD_PATH = "ftp://tgftp.nws.noaa.gov/SL.us008001/DF.of/DC.radar/DS.p19r0/SI.katx/sn.last"
 
 def in_base_dir(relative_path)
@@ -41,8 +30,8 @@ namespace :data do
     File.write(radar_json_file, radar_json)
 
     # Download weather XML
-    WEATHER_STATIONS.each { |station|
-      file = open("#{WEATHER_BASE_PATH}#{station}_e.xml")
+    WeatherHelper::WEATHER_STATIONS.each { |station|
+      file = open("#{WeatherHelper::WEATHER_BASE_PATH}#{station}_e.xml")
       puts WeatherHelper.import(station, file).inspect
     }
   end
