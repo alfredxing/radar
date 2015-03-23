@@ -3,7 +3,7 @@
 //= require ui
 
 // Globals
-var map, overlay, data, autocomplete, marker;
+var map, overlay, data, autocomplete, marker, weatherMarker;
 
 // Radar overlay
 RadarOverlay.prototype = new google.maps.OverlayView();
@@ -117,8 +117,6 @@ StationOverlay.prototype.draw = function() {
 
 // Init
 function initialize() {
-    var mapStyles = [{"featureType":"all","elementType":"labels.text.fill","stylers":[{"saturation":36},{"color":"#000000"},{"lightness":40}]},{"featureType":"all","elementType":"labels.text.stroke","stylers":[{"visibility":"on"},{"color":"#000000"},{"lightness":16}]},{"featureType":"all","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"administrative","elementType":"geometry.fill","stylers":[{"color":"#000000"},{"lightness":20}]},{"featureType":"administrative","elementType":"geometry.stroke","stylers":[{"color":"#000000"},{"lightness":17},{"weight":1.2}]},{"featureType":"landscape","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":20}]},{"featureType":"poi","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":21}]},{"featureType":"road.highway","elementType":"geometry.fill","stylers":[{"color":"#000000"},{"lightness":17}]},{"featureType":"road.highway","elementType":"geometry.stroke","stylers":[{"color":"#000000"},{"lightness":29},{"weight":0.2}]},{"featureType":"road.arterial","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":18}]},{"featureType":"road.local","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":16}]},{"featureType":"transit","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":19}]},{"featureType":"water","elementType":"geometry","stylers":[{"color":"#000000"},{"lightness":17}]}];
-
     var mapOptions = {
         zoom: 8,
         mapTypeId: google.maps.MapTypeId.TERRAIN,
@@ -152,16 +150,46 @@ function initialize() {
 
 function onPlaceChanged() {
     var place = autocomplete.getPlace();
+    if (marker)
+        marker.setMap(null);
+    if (weatherMarker)
+        weatherMarker.setMap(null);
     if (place.geometry) {
-        map.panTo(place.geometry.location);
+        $.getJSON("/weather", function(stations) {
+            // Sort stations by distance
+            stations.sort(function(a, b) {
+                var lA = new google.maps.LatLng(a.location.lat, a.location.lon, false),
+                    lB = new google.maps.LatLng(b.location.lat, b.location.lon, false);
+                var dA = google.maps.geometry.spherical.computeDistanceBetween(place.geometry.location, lA),
+                    dB = google.maps.geometry.spherical.computeDistanceBetween(place.geometry.location, lB);
+                return dA - dB;
+            });
 
-        if (marker)
-            marker.setMap(null);
-        marker = new google.maps.Marker({
-            position: place.geometry.location,
-            animation: google.maps.Animation.DROP
+            // Update weather to show closest one
+            var res = stations[0];
+            $("#temp").text(res.current.temperature);
+            $("#condition").text(res.current.condition);
+            $("[data-tag=updated]").text((new Date(res.current.updated)).toLocaleString());
+
+            for (var i = 0; i < DETAILED_WEATHER.length; i++) {
+                var tag = DETAILED_WEATHER[i];
+                $("[data-tag=" + tag + "]").text(res.current[tag]);
+            }
+
+            // Set a marker for search result
+            map.panTo(place.geometry.location);
+            marker = new google.maps.Marker({
+                position: place.geometry.location,
+                animation: google.maps.Animation.DROP
+            });
+            marker.setMap(map);
+            weatherMarker = new google.maps.Marker({
+                position: new google.maps.LatLng(res.location.lat, res.location.lon, false),
+                animation: google.maps.Animation.DROP,
+                icon: '/images/weather.png'
+            });
+            weatherMarker.setMap(map);
         });
-        marker.setMap(map);
     }
 }
 
