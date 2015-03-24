@@ -183,24 +183,6 @@ body > p {
                 color: #222;
             }
         }
-        
-	.select {
-	    
-	    .option {
-		margin-left: 5px;
-                cursor: pointer;
-                color: #888;
-                -webkit-user-select: none;
-                -moz-user-select: none;
-                -ms-user-select: none;
-	        user-select: none;
-
-	        &.selected {
-                    color: #222;
-                }
-	    }
-
-	}
     }
 }
 
