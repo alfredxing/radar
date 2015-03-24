@@ -140,11 +140,11 @@ function initialize() {
         overlay = new RadarOverlay(map);
         var station = new StationOverlay(map);
 
-	// Autocomplete
-	var input = document.getElementById('search');
-	autocomplete = new google.maps.places.Autocomplete(input, {});
-	autocomplete.bindTo('bounds', map);
-	google.maps.events.addListener(autocomplete, 'place_changed', onPlaceChanged);
+        // Autocomplete
+        var input = document.getElementById('search');
+        autocomplete = new google.maps.places.Autocomplete(input, {});
+        autocomplete.bindTo('bounds', map);
+        google.maps.events.addListener(autocomplete, 'place_changed', onPlaceChanged);
     });
 }
 
