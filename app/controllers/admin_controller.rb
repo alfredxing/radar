@@ -30,9 +30,11 @@ class AdminController < ApplicationController
     render json: true
   end
 
-  def update_weather
-    file = open("http://dd.weatheroffice.ec.gc.ca/citypage_weather/xml/BC/s0000141_e.xml")
-    entry = WeatherHelper.import(file)
+  def update_weather    
+    WeatherHelper::WEATHER_STATIONS.each { |station|
+      file = open("#{WeatherHelper::WEATHER_BASE_PATH}#{station}_e.xml")
+      puts WeatherHelper.import(station, file).inspect
+    }
 
     render json: true
   end

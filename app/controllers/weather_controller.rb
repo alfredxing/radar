@@ -2,8 +2,13 @@ require 'nokogiri'
 require 'open-uri'
 
 class WeatherController < ApplicationController
+  def all
+    render json: Weather.all
+  end
+
   def get
-    render json: Weather.first
+    station = Weather.find_by code: params[:station]
+    render json: station
   end
 
   def update
