@@ -63,7 +63,7 @@ $(window).load(function() {
         updateOptions();
     });
     
-    //$("#city_select").click{updateOptions};
+    $("#city_select").click(updateOptions);
 
     // Convert last updated string to human readable date
     $("[data-tag=updated]").text(function() {
