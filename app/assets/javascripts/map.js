@@ -144,7 +144,7 @@ function initialize() {
         var input = document.getElementById('search');
         autocomplete = new google.maps.places.Autocomplete(input, {});
         autocomplete.bindTo('bounds', map);
-        google.maps.events.addListener(autocomplete, 'place_changed', onPlaceChanged);
+        google.maps.event.addListener(autocomplete, 'place_changed', onPlaceChanged);
     });
 }
 
