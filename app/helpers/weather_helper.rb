@@ -54,10 +54,6 @@ module WeatherHelper
       "lat" => @lat,
       "lon" => @lon
     }
-    entry.location = {
-        "lat" => @lat,
-        "lon" => @lon
-    }
 
     entry.save
     return entry
