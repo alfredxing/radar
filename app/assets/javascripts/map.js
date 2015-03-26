@@ -148,6 +148,7 @@ function initialize() {
     });
 }
 
+
 function onPlaceChanged() {
     var place = autocomplete.getPlace();
     if (marker)

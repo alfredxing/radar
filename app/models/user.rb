@@ -14,7 +14,8 @@ class User < ActiveRecord::Base
     "dewpoint" => false,
     "pressure" => true,
     "visibility" => false,
-    "humidity" => true
+    "humidity" => true, 
+    "code" => "s0000141"
   }
 
   private

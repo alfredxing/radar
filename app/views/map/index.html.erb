@@ -53,9 +53,17 @@
             <% current_user.preferences.each do |option, value| %>
             <span data-option="<%= option %>" class="option<%= " selected" if value %>"><%= option.capitalize %></span>
             <% end %>
-
-
         </div>
+        <select id="city-select">
+            <option value="s0000758" <% if @prefs["code"]=="s0000758"%>selected<% end %>>Abbotsford</option>
+            <option value="s0000398" <% if @prefs["code"]=="s0000398"%>selected<% end %>>Agassiz</option>
+            <option value="s0000496" <% if @prefs["code"]=="s0000496"%>selected<% end %>>Nanaimo</option>
+            <option value="s0000323" <% if @prefs["code"]=="s0000323"%>selected<% end %>>Squamish</option>
+            <option value="s0000141" <% if @prefs["code"]=="s0000141"%>selected<% end %>>Vancouver</option>
+            <option value="s0000775" <% if @prefs["code"]=="s0000775"%>selected<% end %>>Victoria</option>
+            <option value="s0000078" <% if @prefs["code"]=="s0000078"%>selected<% end %>>Whistler</option>
+            <option value="s0000373" <% if @prefs["code"]=="s0000373"%>selected<% end %>>White Rock</option>
+        </select>
     </div>
 </div>
 <% end %>
