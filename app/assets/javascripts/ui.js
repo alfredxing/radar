@@ -16,7 +16,7 @@ function updateOptions() {
         data: JSON.stringify(options),
         type: 'PATCH',
         contentType: 'application/json'
-    });
+    }).done(refreshWeather);
 }
 
 function updateDisplay(options) {
@@ -28,26 +28,34 @@ function updateDisplay(options) {
     }
 }
 
+function refreshWeather() {
+    $.getJSON("/weather/user", function(res) {
+        $("#temp").text(res.current.temperature);
+        $("#curr-condition").text(res.current.condition);
+        $("[data-tag=updated]").text((new Date(res.current.updated)).toLocaleString());
+
+        for (var i = 0; i < DETAILED_WEATHER.length; i++) {
+            var tag = DETAILED_WEATHER[i];
+            $("[data-tag=" + tag + "]").text(res.current[tag]);
+        }
+    });
+
+    $.get("/weather/forecast", function(res) {
+        $("#forecast .content").html(res);
+    });
+}
+
+function refreshRadar() {
+    $.getJSON("/data/radar.json", function(res) {
+        window.data = res;
+        overlay.draw();
+    });
+}
+
 $(window).load(function() {
     $("#refresh").click(function() {
-        // Refresh radar
-        $.getJSON("/data/radar.json", function(res) {
-            window.data = res;
-            overlay.draw();
-        });
-
-        // Refresh weather
-        $.getJSON("/weather", function(res) {
-            $("#temp").text(res.current.temperature);
-            $("#condition").text(res.current.condition);
-            $("[data-tag=updated]").text((new Date(res.current.updated)).toLocaleString());
-
-            for (var i = 0; i < DETAILED_WEATHER.length; i++) {
-                var tag = DETAILED_WEATHER[i];
-                $("[data-tag=" + tag + "]").text(res.current[tag]);
-            }
-        });
-
+        refreshWeather();
+        refreshRadar();
         return false;
     });
 

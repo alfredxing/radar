@@ -196,6 +196,12 @@ body > p {
 }
 
 #forecast {
+    transition-duration: 0.15s;
+
+    * {
+        transition-duration: 0.15s;
+    }
+
     td {
         vertical-align: top;
         padding: 0 0 5px 0;

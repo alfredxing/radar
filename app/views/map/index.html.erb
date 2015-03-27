@@ -2,11 +2,11 @@
 
 <div id="weather" class="card">
     <span id="temp"><%= @temperature %></span><span id="temp-units">&deg;C</span>
-    <span id="curr-condition"><%= @condition %>&nbsp;</span>
+    <span id="curr-condition"><%= @condition %></span>
     <div id="detailed-conditions">
         <span>
             <span class="label">Station:&emsp;&emsp; </span>
-            <strong data-tag="wind"><%= @station %></strong>
+            <strong data-tag="wind"><%= @station.name %></strong>
         </span>
 
         <span class="item" <% if !@prefs["wind"] %>style="display: none;"<% end %>>

@@ -12,7 +12,6 @@ class MapController < ApplicationController
     @pressure = curr["pressure"]
     @visibility = curr["visibility"]
     @humidity = curr["humidity"]
-    @station = @station.name
     @forecast = @station.forecast
   end
 end

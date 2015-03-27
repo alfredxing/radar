@@ -1,0 +1,8 @@
+<table>
+<% @forecast.each do |f| %>
+    <tr>
+        <td class="name"><%= f[:name] %></td>
+        <td class="forecast"><%= f[:forecast] %></td>
+    </tr>
+<% end %>
+</table>
