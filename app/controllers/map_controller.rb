@@ -37,5 +37,5 @@ class MapController < ApplicationController
     if @prefs["code"]=="s0000141"
       @station = "Vancouver"
     end
-
-end
+  end
+  end
