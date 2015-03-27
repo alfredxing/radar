@@ -185,6 +185,14 @@ body > p {
             }
         }
     }
+
+    hr {
+        border: none;
+    }
+
+    #city-select {
+        float: right;
+    }
 }
 
 #forecast {

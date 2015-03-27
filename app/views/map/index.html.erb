@@ -71,6 +71,8 @@
             <span data-option="<%= option %>" class="option<%= " selected" if value %>"><%= option.capitalize %></span>
             <% end %>
         </div>
+        <hr>
+        <strong>City:</strong>
         <select id="city-select">
             <option value="s0000758" <% if @prefs["code"]=="s0000758"%>selected<% end %>>Abbotsford</option>
             <option value="s0000398" <% if @prefs["code"]=="s0000398"%>selected<% end %>>Agassiz</option>
