@@ -31,5 +31,11 @@ class MapController < ApplicationController
     if @prefs["code"]=="s0000496"
       @station = "Nanaimo"
     end
-  end
+    if @prefs["code"]=="s0000078"
+      @station = "Whistler"
+    end
+    if @prefs["code"]=="s0000141"
+      @station = "Vancouver"
+    end
+
 end
