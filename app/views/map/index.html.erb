@@ -5,9 +5,10 @@
     <span id="curr-condition"><%= @condition %>&nbsp;</span>
     <div id="detailed-conditions">
         <span>
-            <span class="label">Station:</span>
+            <span class="label">Station:&emsp;&emsp; </span>
             <strong data-tag="wind"><%= @station %></strong>
         </span>
+
         <span class="item" <% if !@prefs["wind"] %>style="display: none;"<% end %>>
             <span class="label">Wind:</span>
             <strong data-tag="wind"><%= @wind %></strong>
