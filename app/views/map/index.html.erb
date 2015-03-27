@@ -1,14 +1,14 @@
 <input type="text" id="search" placeholder="Search for weather near a location" autofocus>
 
 <div id="weather" class="card">
+    <img src="<%= @icon %>" id="icon">
     <span id="temp"><%= @temperature %></span><span id="temp-units">&deg;C</span>
     <span id="curr-condition"><%= @condition %></span>
     <div id="detailed-conditions">
-        <span>
-            <span class="label">Station:&emsp;&emsp; </span>
-            <strong data-tag="wind"><%= @station.name %></strong>
+        <span class="item">
+            <span class="label">Station:</span>
+            <strong data-tag="station"><%= @station.name %></strong>
         </span>
-
         <span class="item" <% if !@prefs["wind"] %>style="display: none;"<% end %>>
             <span class="label">Wind:</span>
             <strong data-tag="wind"><%= @wind %></strong>
@@ -68,7 +68,9 @@
         <strong>Display:</strong>
         <div class="options">
             <% current_user.preferences.each do |option, value| %>
+            <% if option != "code" %>
             <span data-option="<%= option %>" class="option<%= " selected" if value %>"><%= option.capitalize %></span>
+            <% end %>
             <% end %>
         </div>
         <hr>

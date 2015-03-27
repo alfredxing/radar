@@ -32,7 +32,18 @@ function refreshWeather() {
     $.getJSON("/weather/user", function(res) {
         $("#temp").text(res.current.temperature);
         $("#curr-condition").text(res.current.condition);
+        $("[data-tag=station]").text(res.name);
         $("[data-tag=updated]").text((new Date(res.current.updated)).toLocaleString());
+
+        if (res.current.icon_code) {
+            $.get("/weather/icon/" + res.current.icon_code, function(url) {
+                $("#icon").attr("src", url);
+                $("#icon").show();
+            });
+        } else {
+            console.log(res);
+            $("#icon").hide();
+        }
 
         for (var i = 0; i < DETAILED_WEATHER.length; i++) {
             var tag = DETAILED_WEATHER[i];

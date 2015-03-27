@@ -53,11 +53,19 @@ body > p {
     height: 100%;
 }
 
+#icon {
+    float: right;
+    position: relative;
+    top: -20px;
+}
+
 #temp {
+    display: inline-block;
     font-weight: 300;
     font-size: 36px;
     line-height: 1em;
     letter-spacing: -2px;
+    margin-top: 3px;
 }
 
 #temp-units {
@@ -65,23 +73,23 @@ body > p {
     font-size: 16px;
     vertical-align: top;
     display: inline-block;
-    margin-top: 3px;
+    margin-top: 6px;
     margin-left: 3px;
     color: #888;
 }
 
 #curr-condition {
-    display: inline-block;
+    display: block;
     font-size: 15.88px;
     font-weight: 400;
     vertical-align: top;
-    margin-top: 2px;
-    margin-left: 18px;
+    margin-top: 12px;
+    margin-left: 3px;
 }
 
 #detailed-conditions {
-    float: right;
-    margin-right: 1px;
+    margin-top: 12px;
+    margin-left: 3px;
     color: #666;
 
     .item {

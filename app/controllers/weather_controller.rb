@@ -25,6 +25,12 @@ class WeatherController < ApplicationController
     render layout: false
   end
 
+  def icon
+    code = params[:code].to_i
+    icon_url = WeatherHelper::WEATHER_ICON_PATH + WeatherHelper::WEATHER_ICON_MAP[code] + ".png"
+    render body: icon_url
+  end
+
   def update
     file = open("http://dd.weatheroffice.ec.gc.ca/citypage_weather/xml/BC/s0000141_e.xml")
     entry = WeatherHelper.import(file)

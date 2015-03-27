@@ -12,6 +12,10 @@ class MapController < ApplicationController
     @pressure = curr["pressure"]
     @visibility = curr["visibility"]
     @humidity = curr["humidity"]
+
+    icon_code = curr["icon_code"]
+    @icon = WeatherHelper::WEATHER_ICON_PATH + WeatherHelper::WEATHER_ICON_MAP[icon_code] + ".png"
+
     @forecast = @station.forecast
   end
 end
