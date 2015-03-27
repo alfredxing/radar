@@ -25,6 +25,13 @@ class WeatherController < ApplicationController
     render layout: false
   end
 
+  def forecast_code
+    station = Weather.find_by code: params[:code]
+    @forecast = station.forecast
+
+    render :forecast, layout: false
+  end
+
   def icon
     code = params[:code].to_i
     icon_url = WeatherHelper::WEATHER_ICON_PATH + WeatherHelper::WEATHER_ICON_MAP[code] + ".png"

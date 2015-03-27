@@ -1,9 +1,5 @@
-// Place all the styles related to the map controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
-
 body {
-    font-family: Roboto,Arial,sans-serif;
+    font-family: Roboto, Arial, sans-serif;
     color: #222;
     margin: 0;
 }
@@ -39,10 +35,6 @@ a:hover {
     line-height: 1.333em;
     padding: 13px;
     width: 374px;
-}
-
-body > p {
-    display: none;
 }
 
 #map-canvas {
@@ -111,7 +103,7 @@ body > p {
 }
 
 #last-updated {
-    background-color: rgba(255, 255, 255, 0.5);
+    // background-color: rgba(255, 255, 255, 0.5);
 }
 
 #info {
@@ -248,4 +240,14 @@ body > p {
     border-top-left-radius: 0;
     border-top-right-radius: 0;
     z-index: 1000;
+}
+
+.notice {
+    background: #FFF1A8;
+    border: 1px solid #F0C36D;
+    opacity: 0.9;
+
+    &:empty {
+        display: none;
+    }
 }

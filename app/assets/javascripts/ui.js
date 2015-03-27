@@ -89,4 +89,6 @@ $(window).load(function() {
     $("[data-tag=updated]").text(function() {
         return (new Date($(this).text())).toLocaleString()
     });
+
+    $(".notice").delay(2000).fadeOut(200);
 });
