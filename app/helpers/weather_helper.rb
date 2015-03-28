@@ -58,4 +58,4 @@ module WeatherHelper
     entry.save
     return entry
   end
-  end
+end

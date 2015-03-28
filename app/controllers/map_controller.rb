@@ -14,4 +14,4 @@ class MapController < ApplicationController
     @humidity = curr["humidity"]
     @station = @w.name
   end
-  end
+end
