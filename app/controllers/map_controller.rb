@@ -1,6 +1,9 @@
 class MapController < ApplicationController
   def index
-    curr = Weather.first.current
+    @prefs = user_signed_in? ? current_user.preferences : User::DEFAULT_PREFS
+    @w = Weather.find_by code: @prefs["code"]
+    curr = @w.current
+
     @updated = curr["updated"]
     @temperature = curr["temperature"]
     @condition = curr["condition"]
@@ -9,7 +12,6 @@ class MapController < ApplicationController
     @pressure = curr["pressure"]
     @visibility = curr["visibility"]
     @humidity = curr["humidity"]
-
-    @prefs = user_signed_in? ? current_user.preferences : User::DEFAULT_PREFS
+    @station = @w.name
   end
 end
