@@ -80,8 +80,8 @@ module WeatherHelper
 
     @forecast = doc.xpath("//forecastGroup/forecast").map { |e|
       {
-        "name": e.xpath(".//period").attr("textForecastName").text,
-        "forecast": e.xpath(".//textSummary/text()").first.text
+        "name" => e.xpath(".//period").attr("textForecastName").text,
+        "forecast" => e.xpath(".//textSummary/text()").first.text
       }
     }
 
