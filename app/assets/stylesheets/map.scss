@@ -50,9 +50,12 @@ a:hover {
 }
 
 #icon {
-    float: right;
+    float: left;
     position: relative;
-    top: -20px;
+}
+
+#conditions {
+    margin-left: 75px;
 }
 
 #temp {

@@ -11,7 +11,7 @@ module WeatherHelper
     "s0000141"
   ]
 
-  WEATHER_ICON_PATH = "//ssl.gstatic.com/onebox/weather/128/"
+  WEATHER_ICON_PATH = "//ssl.gstatic.com/onebox/weather/64/"
   WEATHER_ICON_MAP = {
     0 => "sunny",
     1 => "partly_cloudy",
