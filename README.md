@@ -1,30 +1,21 @@
-Radar
-=====
+### [Radar](https://radar.xng.io)
 
-is a web app that
-* Keeps track current, local climate data sourced from the [National Weather Service](http://www.nws.noaa.gov/tg/radfiles.php)
-* Displays the data numerically and graphically, customized upon user specification
+Radar is a simple weather app that shows radar in the Greater Vancouver area, and displays current weather and forecast for a variety of cities.
 
-Features
---------
-* Radar plots via [Google Maps](https://maps.google.com)
+#### Features
+* Radar data from the [National Weather Service](http://www.weather.gov/)
+* Weather data from [Environment Canada](http://weather.gc.ca/)
+* User preferences
 * Multiple location choices
+* Search by location
 * Manual data update
-* Twitter integration
-* User preferences management
 
-Built with
-----------
+#### The stack
 * Ruby on Rails
-* Amazon RDS
+* Amazon EC2
 
-Tested with
------------
-* [Travis CI](http://travis-ci.org)
-
-Contact
--------------------------
-* Alfred Xing [@alfredxing](https://github.com/alfredxing)
-* Michelle Findlay-Olynyk [@mfindlayolynyk](https://github.com/mfindlayolynyk)
-* Imran Khan [@arclite181](https://github.com/arclite181)
-* Mimi Ko [@mimiko](https://github.com/mimiko)
+#### People
+* [@mfindlayolynyk](https://github.com/mfindlayolynyk)
+* [@arclite181](https://github.com/arclite181)
+* [@mimiko](https://github.com/mimiko)
+* [@alfredxing](https://github.com/alfredxing)
