@@ -117,6 +117,17 @@ a:hover {
     margin-top: 4px;
 }
 
+#nav {
+    .loggedin {
+        float: right;
+        color: #999;
+    }
+    .useremail {
+        float: right;
+        color: #666;
+    }
+}
+
 #nav a {
     display: inline-block;
     margin-right: 12px;
