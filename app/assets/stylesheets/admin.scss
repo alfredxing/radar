@@ -7,4 +7,42 @@
     position: absolute;
     height: 100%;
     width: 100%;
+
+    .cell {
+        display: table-cell;
+        vertical-align: top;
+        float: left;
+        padding: 13px;
+    }
+
+    .card {
+        margin: 0 auto 4px auto;
+    }
+
+    h2 {
+        margin: 5px 0 1em 0;
+        font-weight: 300;
+    }
+
+    input {
+        font: 400 12px "Roboto", "Arial", sans-serif;
+    }
+
+    .button {
+        border: 1px solid #3377FF;
+        border-radius: 2px;
+        background-color: #6699FF;
+        background-image: -webkit-linear-gradient(top, #3388FF, #1182F0);
+        color: #FFF;
+        padding: 10px 20px;
+        width: 100%;
+        cursor: pointer;
+        margin-top: 1em;
+        margin-bottom: 1em;
+
+        &:hover {
+            background-image: -webkit-linear-gradient(top, #3F92FF, #1182F0);
+            background: #75a3ff;
+        }
+    }
 }
