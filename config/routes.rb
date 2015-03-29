@@ -6,6 +6,10 @@ Rails.application.routes.draw do
 
   # Weather
   get 'weather/update'
+  get 'weather/user'
+  get 'weather/forecast'
+  get 'weather/forecast/:code' => 'weather#forecast_code'
+  get 'weather/icon/:code' => 'weather#icon'
   get 'weather/:station' => 'weather#get'
   get 'weather' => 'weather#all'
 

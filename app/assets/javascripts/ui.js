@@ -5,6 +5,7 @@ function updateOptions() {
     $(".option").each(function() {
         options[$(this).attr("data-option")] = $(this).hasClass("selected");
     });
+
     console.log(options);
     updateDisplay(options);
     
@@ -15,7 +16,7 @@ function updateOptions() {
         data: JSON.stringify(options),
         type: 'PATCH',
         contentType: 'application/json'
-    });
+    }).done(refreshWeather);
 }
 
 function updateDisplay(options) {
@@ -27,34 +28,53 @@ function updateDisplay(options) {
     }
 }
 
+function refreshWeather() {
+    $.getJSON("/weather/user", function(res) {
+        $("#temp").text(res.current.temperature);
+        $("#curr-condition").text(res.current.condition);
+        $("[data-tag=station]").text(res.name);
+        $("[data-tag=updated]").text((new Date(res.current.updated)).toLocaleString());
+
+        if (res.current.icon_code) {
+            $.get("/weather/icon/" + res.current.icon_code, function(url) {
+                $("#icon").attr("src", url);
+                $("#icon").show();
+            });
+        } else {
+            console.log(res);
+            $("#icon").hide();
+        }
+
+        for (var i = 0; i < DETAILED_WEATHER.length; i++) {
+            var tag = DETAILED_WEATHER[i];
+            $("[data-tag=" + tag + "]").text(res.current[tag]);
+        }
+    });
+
+    $.get("/weather/forecast", function(res) {
+        $("#forecast .content").html(res);
+    });
+}
+
+function refreshRadar() {
+    $.getJSON("/data/radar.json", function(res) {
+        window.data = res;
+        overlay.draw();
+    });
+}
+
 $(window).load(function() {
     $("#refresh").click(function() {
-        // Refresh radar
-        $.getJSON("/data/radar.json", function(res) {
-            window.data = res;
-            overlay.draw();
-        });
-
-        // Refresh weather
-        $.getJSON("/weather", function(res) {
-            $("#temp").text(res.current.temperature);
-            $("#condition").text(res.current.condition);
-            $("[data-tag=updated]").text((new Date(res.current.updated)).toLocaleString());
-
-            for (var i = 0; i < DETAILED_WEATHER.length; i++) {
-                var tag = DETAILED_WEATHER[i];
-                $("[data-tag=" + tag + "]").text(res.current[tag]);
-            }
-        });
-
+        refreshWeather();
+        refreshRadar();
         return false;
     });
 
-    $("body").on('click', '#preferences.collapsed', function() {
+    $("body").on('click', '.collapsable.collapsed', function() {
         $(this).toggleClass("collapsed");
     });
-    $("#preferences .close").click(function(e) {
-        $("#preferences").toggleClass("collapsed");
+    $(".collapsable .close").click(function(e) {
+        $(this).parent().toggleClass("collapsed");
         e.stopPropagation();
     });
 
@@ -69,4 +89,6 @@ $(window).load(function() {
     $("[data-tag=updated]").text(function() {
         return (new Date($(this).text())).toLocaleString()
     });
+
+    $(".notice").delay(2000).fadeOut(200);
 });

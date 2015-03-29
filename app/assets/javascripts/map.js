@@ -170,12 +170,17 @@ function onPlaceChanged() {
             var res = stations[0];
             $("#temp").text(res.current.temperature);
             $("#condition").text(res.current.condition);
+            $("[data-tag=station]").text(res.name);
             $("[data-tag=updated]").text((new Date(res.current.updated)).toLocaleString());
 
             for (var i = 0; i < DETAILED_WEATHER.length; i++) {
                 var tag = DETAILED_WEATHER[i];
                 $("[data-tag=" + tag + "]").text(res.current[tag]);
             }
+
+            $.get("/weather/forecast/" + res.code, function(html) {
+                $("#forecast .content").html(html);
+            });
 
             // Set a marker for search result
             map.panTo(place.geometry.location);
@@ -191,6 +196,8 @@ function onPlaceChanged() {
             });
             weatherMarker.setMap(map);
         });
+    } else {
+        refreshWeather();
     }
 }
 
