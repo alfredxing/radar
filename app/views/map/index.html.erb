@@ -56,6 +56,8 @@
     <a id="refresh" href="#">Refresh</a>
     <% if user_signed_in? %>
         <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+        <span class="useremail">&nbsp;<%= @email %></span>
+        <span class="loggedin">Logged in as:</span>
     <% else %>
         <a href="users/sign_up">Sign up</a>
         <a href="users/sign_in">Sign in</a>

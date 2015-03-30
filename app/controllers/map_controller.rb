@@ -1,5 +1,6 @@
 class MapController < ApplicationController
   def index
+    @email = user_signed_in? ? current_user["email"] : ""
     @prefs = user_signed_in? ? current_user.preferences : User::DEFAULT_PREFS
     @station = Weather.find_by code: @prefs["code"]
     curr = @station.current
