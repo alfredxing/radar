@@ -1,3 +1,48 @@
-// Place all the styles related to the admin controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.admin {
+    background-color: #abd3ff;
+    background-image: url('/images/bg2.gif');
+    background-attachment: fixed;
+    background-position: right 0px bottom 0px;
+    background-repeat: no-repeat;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+
+    .cell {
+        display: table-cell;
+        vertical-align: top;
+        float: left;
+        padding: 13px;
+    }
+
+    .card {
+        margin: 0 auto 4px auto;
+    }
+
+    h2 {
+        margin: 5px 0 1em 0;
+        font-weight: 300;
+    }
+
+    input {
+        font: 400 12px "Roboto", "Arial", sans-serif;
+    }
+
+    .button {
+        border: 1px solid #3377FF;
+        border-radius: 2px;
+        background-color: #6699FF;
+        background-image: -webkit-linear-gradient(top, #3388FF, #1182F0);
+        color: #FFF;
+        padding: 10px 20px;
+        width: 100%;
+        cursor: pointer;
+        margin-top: 1em;
+        margin-bottom: 1em;
+
+        &:hover {
+            background-image: -webkit-linear-gradient(top, #3F92FF, #1182F0);
+            background: #75a3ff;
+        }
+    }
+}
