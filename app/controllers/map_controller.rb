@@ -15,8 +15,13 @@ class MapController < ApplicationController
     @humidity = curr["humidity"]
 
     icon_code = curr["icon_code"]
-    @icon = WeatherHelper::WEATHER_ICON_PATH + WeatherHelper::WEATHER_ICON_MAP[icon_code] + ".png"
 
+    if @condition == ""
+       @icon = "/images/blank64.png"
+    else
+       @icon = WeatherHelper::WEATHER_ICON_PATH + WeatherHelper::WEATHER_ICON_MAP[icon_code] + ".png"
+    end
+    
     @forecast = @station.forecast
   end
 end
