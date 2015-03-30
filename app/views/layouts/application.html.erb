@@ -2,6 +2,7 @@
 <html>
 <head>
   <title><%= @title.nil? ? "Not Implemented" : @title %></title>
+  <link rel="icon" href="/images/weather.png">
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <script type="text/javascript" src="//maps.googleapis.com/maps/api/js?libraries=geometry,places"></script>
   <%= javascript_include_tag 'application', controller_name %>
