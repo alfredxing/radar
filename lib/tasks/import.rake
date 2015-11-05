@@ -18,8 +18,8 @@ namespace :data do
     parser_src = File.join(build_path, "src/Parser.java")
     compiled_path = File.join(build_path, "src/Parser.class")
     class_path = [
-      File.join(build_path, "lib/gson-2.3.1.jar"),
-      File.join(build_path, "lib/toolsUI-4.5.jar"),
+      File.join(build_path, "lib/gson-2.4.jar"),
+      File.join(build_path, "lib/toolsUI-4.6.jar"),
       File.join(build_path, "src")
     ].join(":")
     `javac -cp #{class_path} #{parser_src}` unless File.exist? compiled_path

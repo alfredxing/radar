@@ -16,8 +16,8 @@ class AdminController < ApplicationController
     build_path = in_base_dir("bin/radar-parser")
     parser_src = File.join(build_path, "src/Parser.java")
     class_path = [
-      File.join(build_path, "lib/gson-2.3.1.jar"),
-      File.join(build_path, "lib/toolsUI-4.5.jar"),
+      File.join(build_path, "lib/gson-2.4.jar"),
+      File.join(build_path, "lib/toolsUI-4.6.jar"),
       File.join(build_path, "src")
     ].join(":")
     `javac -cp #{class_path} #{parser_src}`
