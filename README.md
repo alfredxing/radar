@@ -13,7 +13,7 @@ Radar is a simple weather app that shows radar in the Greater Vancouver area, an
 * Manual data update
 
 #### Code of interest
-* [The radar drawer](https://github.com/alfredxing/radar/blob/master/app/assets/javascripts/radar.js), which is shown on the map using some overlays in [map.js](https://github.com/alfredxing/radar/blob/master/app/assets/javascripts/map.js)
+* [The `<canvas>` radar plotter](https://github.com/alfredxing/radar/blob/master/app/assets/javascripts/radar.js), which is shown on the map using some overlays in [map.js](https://github.com/alfredxing/radar/blob/master/app/assets/javascripts/map.js)
 * [The radar parser](https://github.com/alfredxing/radar/blob/master/bin/radar-parser/src/Parser.java), written in Java (dependent on the [NetCDF](http://www.unidata.ucar.edu/software/thredds/current/netcdf-java/) library)
 
 #### Installation
