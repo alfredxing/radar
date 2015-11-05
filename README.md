@@ -1,4 +1,4 @@
-> Not actively maintained. Installation is outlined in the INSTALL.md file.
+> Not actively maintained. Not intended for use as production code (this project was hacked together as a school project). Installation is outlined in the `INSTALL.md` file.
 
 ### Radar
 
