@@ -1,4 +1,6 @@
-### [Radar](https://radar.xng.io)
+> Not actively maintained. Installation is outlined in the INSTALL.md file.
+
+### Radar
 
 Radar is a simple weather app that shows radar in the Greater Vancouver area, and displays current weather and forecast for a variety of cities.
 
@@ -10,9 +12,8 @@ Radar is a simple weather app that shows radar in the Greater Vancouver area, an
 * Search by location
 * Manual data update
 
-#### The stack
-* Ruby on Rails
-* Amazon EC2
+#### Installation
+For installation instructions, please see the `INSTALL.md` file.
 
 #### People
 * [@mfindlayolynyk](https://github.com/mfindlayolynyk)
